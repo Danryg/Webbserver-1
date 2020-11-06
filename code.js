@@ -1,11 +1,14 @@
 var http = require('http'); // require initiates a module from node.js
+var url = require('url');
 var dt = require('./customModule');
 var port = 8080;
 
-http.createServer(function (req,res) { // create server with http module
-    res.writeHead(200, {'Content-type': 'text/html'});
-    res.write("The date and time is currently: "+ dt.myDateTime());
-    res.end('Hello world!');
+http.createServer(function (req,res) { // create server with http module // req = client request
+    res.writeHead(200, {'Content-type': 'text/html'}); // define header (200 = all OK)
+    //res.write("The date and time is currently: "+ dt.myDateTime()); // Output
+    //var q = url.parse(req.url, true).query;
+    //var txt = q.year + " " + q.month;
+    console.log
+    res.end("request made");
 }).listen(port); // what port the server should listen to
-
 
