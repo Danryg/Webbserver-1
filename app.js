@@ -14,7 +14,7 @@ var gitOptions = {
 /*-------------------------------------*/
 URL = readURL();
 var info = getJSON(URL, gitOptions);
-console.log(info);
+console.log(info["commits_url"]);
 
 /*-------------------------------------*/
 
