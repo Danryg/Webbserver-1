@@ -1,0 +1,3 @@
+Take url in input from console
+Make http request
+Print the json object output.
