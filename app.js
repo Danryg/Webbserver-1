@@ -14,21 +14,20 @@ var gitOptions = {
 
 /*-------------------------------------*/
 
-
+console.log(checkSHA(readURL()));
 
 function checkSHA() {
     URL = "https://api.github.com/repos/lillelink/DIT953-lab1/branches";
-    var masterBranch;
     info = getJSON(URL, gitOptions);
     for (let i = 0; i < info.length; i++) {
         let current = info[i];
         if (current["name"] == "master") {
-            masterBranch = info[i];
-            currentSHA = masterBranch.commit["sha"];
-            break;
+            let masterBranch = info[i];
+            return masterBranch.commit["sha"];
+            
         }
     }
-    return currentSHA;
+    return null;
 }
 
 /*
