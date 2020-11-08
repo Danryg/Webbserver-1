@@ -1,12 +1,11 @@
-//console.clear();
-
+// Modules
 const request = require('sync-request'); 
 const readline = require('readline-sync');
 
+// Variables
 const parseRate = 3000; // set to lower than 5000 requests per hour
 var URL;
 var currentSHA;
-
 var gitOptions = {
     headers: {
         'User-Agent': 'request',
@@ -14,8 +13,7 @@ var gitOptions = {
     }
 };
 
-/*-------------------------------------*/
-
+/*------------------MAIN PROGRAM-------------------*/
 URL = getFromTerminal("URL > ");
 currentSHA = checkSHA(URL);
 setInterval(mainLoop, parseRate);
@@ -30,7 +28,7 @@ function mainLoop() {
     }
 }
 
-/*-------------------------------------*/
+/*-----------------HELPER FUNCTIONS--------------------*/
 
 // Makes a GET request to the chosen URL (getJSON) and returns the latest commit sha
 function checkSHA(urlpar) {
