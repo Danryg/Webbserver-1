@@ -1,5 +1,7 @@
-Take url in input from console
-Make http request
-Print the json object output.
-
-Skriv om med await/octokit?
+Todo:
+Make all information inputs from terminal (alt. config file? passwords and token should be protected!)
+Implement defensive programming
+Implement smtp.js and write send email function
+Deploy to webserver
+GUI for setting target repositories?
+Connect to DB and make some type of user based system?
