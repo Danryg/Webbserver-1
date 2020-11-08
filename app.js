@@ -3,6 +3,7 @@
 const request = require('sync-request'); 
 const readline = require('readline-sync');
 
+const parseRate = 6000;
 var URL;
 var info;
 var currentSHA;
@@ -14,11 +15,20 @@ var gitOptions = {
 
 /*-------------------------------------*/
 
-console.log(checkSHA(readURL()));
+URL = readURL();
+currentSHA = checkSHA(URL);
+setInterval(mainLoop, parseRate);
 
-function checkSHA() {
-    URL = "https://api.github.com/repos/lillelink/DIT953-lab1/branches";
-    info = getJSON(URL, gitOptions);
+function mainLoop() {
+    if (currentSHA != checkSHA(URL)) {
+        console.log("NEW COMMIT TO MASTER");
+    } else {
+        console.log("CHECKING...")
+    }
+}
+
+function checkSHA(urlpar) {
+    info = getJSON(urlpar, gitOptions);
     for (let i = 0; i < info.length; i++) {
         let current = info[i];
         if (current["name"] == "master") {
