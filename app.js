@@ -27,6 +27,7 @@ function mainLoop() {
         console.log("CHECKING...");
     }
 }
+//test
 
 function checkSHA(urlpar) {
     info = getJSON(urlpar, gitOptions);
