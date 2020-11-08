@@ -1,24 +1,41 @@
-console.clear();
+//console.clear();
 
 const request = require('sync-request'); 
 const readline = require('readline-sync');
 
 var URL;
 var info;
+var currentSHA;
 var gitOptions = {
     headers: {
         'User-Agent': 'request'
     }
 };
 
-//Testchange!!
-
-//testchange 2!!
-
 /*-------------------------------------*/
+
+
+
+function checkSHA() {
+    URL = "https://api.github.com/repos/lillelink/DIT953-lab1/branches";
+    var masterBranch;
+    info = getJSON(URL, gitOptions);
+    for (let i = 0; i < info.length; i++) {
+        let current = info[i];
+        if (current["name"] == "master") {
+            masterBranch = info[i];
+            currentSHA = masterBranch.commit["sha"];
+            break;
+        }
+    }
+    return currentSHA;
+}
+
+/*
 URL = readURL();
-var info = getJSON(URL, gitOptions);
+info = getJSON(URL, gitOptions);
 console.log(info["commits_url"]);
+*/
 
 /*-------------------------------------*/
 
