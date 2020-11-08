@@ -20,10 +20,11 @@ currentSHA = checkSHA(URL);
 setInterval(mainLoop, parseRate);
 
 function mainLoop() {
-    if (currentSHA != checkSHA(URL)) {
+    let latestSHA = checkSHA(URL);
+    if (currentSHA != latestSHA) {
         console.log("NEW COMMIT TO MASTER");
     } else {
-        console.log("CHECKING...")
+        console.log("CHECKING...");
     }
 }
 
@@ -33,6 +34,7 @@ function checkSHA(urlpar) {
         let current = info[i];
         if (current["name"] == "master") {
             let masterBranch = info[i];
+            console.log(masterBranch.commit["sha"]);
             return masterBranch.commit["sha"];
             
         }
