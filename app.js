@@ -3,23 +3,20 @@
 const request = require('sync-request'); 
 const readline = require('readline-sync');
 
-const parseRate = 3000;
+const parseRate = 3000; // set to lower than 5000 requests per hour
 var URL;
-var OAuthToken;
-var info;
 var currentSHA;
 
-
-/*-------------------------------------*/
-
-URL = readURL();
-OAuthToken = readToken();
 var gitOptions = {
     headers: {
         'User-Agent': 'request',
-        'Authorization': 'token'+OAuthToken
+        'Authorization': 'token'+getFromTerminal("Auth token > ")
     }
 };
+
+/*-------------------------------------*/
+
+URL = getFromTerminal("URL > ");
 currentSHA = checkSHA(URL);
 setInterval(mainLoop, parseRate);
 
@@ -32,39 +29,27 @@ function mainLoop() {
         console.log("CHECKING...");
     }
 }
-//test
 
+/*-------------------------------------*/
+
+// Makes a GET request to the chosen URL (getJSON) and returns the latest commit sha
 function checkSHA(urlpar) {
-    info = getJSON(urlpar, gitOptions);
+    let info = getJSON(urlpar, gitOptions);
     for (let i = 0; i < info.length; i++) {
         let current = info[i];
         if (current["name"] == "master") {
             let masterBranch = info[i];
-            console.log(masterBranch.commit["sha"]);
             return masterBranch.commit["sha"];
-            
         }
     }
     return null;
 }
 
-/*
-URL = readURL();
-info = getJSON(URL, gitOptions);
-console.log(info["commits_url"]);
-*/
-
-/*-------------------------------------*/
-
-function readURL() {
-    return readline.question("URL > ");   
-}
-
-function readToken() {
-    return readline.question("Token > ")
-}
-
+// Makes a GET request with the passed set of options, to the given URL.
 function getJSON(URL, options) {
     return JSON.parse(request('GET', URL, options).getBody());
 }
 
+function getFromTerminal(question) {
+    return readline.question(question);
+}
