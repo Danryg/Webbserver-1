@@ -48,6 +48,7 @@ function getJSON(URL, options) {
     return JSON.parse(request('GET', URL, options).getBody());
 }
 
+//IO
 function getFromTerminal(question) {
     return readline.question(question);
 }
