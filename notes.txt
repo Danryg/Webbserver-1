@@ -1,5 +1,6 @@
 Todo:
 Make all information inputs from terminal (alt. config file? passwords and token should be protected!)
+Replace sync-request
 Implement defensive programming
 Implement smtp.js and write send email function
 Deploy to webserver
